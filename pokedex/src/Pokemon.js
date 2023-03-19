@@ -20,7 +20,7 @@ const Pokemon = (props) => {
         console.log(error);
         setpokemonState({ userHaveAnError: true, errorMessage: "There is an Error" })
       })
-  }, []);
+  }, [props.name]);
   return (
     <div>
       {pokemonState.userHaveAnError
@@ -28,13 +28,13 @@ const Pokemon = (props) => {
         :
         <div>
           Pokemon will go here:
-          <br />{pokemonState !== null && <img src={pokemonState.sprites.front_default} />}
-          {pokemonState !== null && pokemonState.name}
-          {pokemonState !== null && pokemonState.abilities.map((ability) => { return <h3>{ability.ability.name}</h3> })}
-          {pokemonState !== null && pokemonState.stats.map((stat) => { return <h3>{stat.base_stat}</h3> })}
+          <br />{pokemonState.name && <img src={pokemonState?.sprites?.front_default} />}
+          {pokemonState.name}
+          {pokemonState.name && pokemonState.abilities.map((ability) => { return <h3>{ability.ability.name}</h3> })}
+          {pokemonState.name && pokemonState.stats.map((stat) => { return <h3>{stat.base_stat}</h3> })}
           <div style={{ display: "flex" }}>
             <h3>Types: </h3>
-            {pokemonState !== null && pokemonState.types.map((type) => { return <h3> {type.type.name} </h3> })}
+            {pokemonState.name && pokemonState.types.map((type) => { return <h3> {type.type.name} </h3> })}
             <br />
           </div>
         </div>
