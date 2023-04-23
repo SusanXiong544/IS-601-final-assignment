@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from '@mui/material/Button';  
 
 const PokedexWrapper = require("pokeapi-js-wrapper")
 const P = new PokedexWrapper.Pokedex()
@@ -23,6 +24,13 @@ const Pokemon = (props) => {
   }, [props.name]);
   return (
     <div>
+      <Button
+        onClick={() => {
+          props.back("entries")
+        }}
+      >
+        Back
+      </Button>
       {pokemonState.userHaveAnError
         ? <p>{pokemonState.errorMessage}</p>
         :
@@ -43,7 +51,5 @@ const Pokemon = (props) => {
   )
 }
 export default Pokemon;
-
-
 
 

@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState} from "react";
 
 const PokedexWrapper = require("pokeapi-js-wrapper")
 const P = new PokedexWrapper.Pokedex()
@@ -20,6 +20,7 @@ const PokedexList = (props) => {
             ...props.pokedexState,
             selectedPokedex : name,
             pokedexEntries : pokemon_entries, 
+            contentPage : "entries"
           });
         })
         .catch((error)=> {
