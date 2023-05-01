@@ -1,8 +1,26 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import { Pokedex } from "pokeapi-js-wrapper";
+import PokedexComponent from "./Pokedex";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+jest.mock('pokeapi-js-wrapper');
+
+beforeEach(() => {
+    Pokedex.mockReturnValue({
+        resource: jest.fn().mockResolvedValue({
+            results: [{ name: 'national' }]
+        })
+    })
+})
+
+afterEach(() => {
+    jest.clearAllMocks();
+})
+
+test('return list of Pokedex that render on the page', async () => {
+    render(
+        <PokedexComponent onViewClick = {jest.fn()}  />,
+      );
+  
+    const nationalPokedex = await screen.getByText('national');
+  expect(nationalPokedex).toBeInTheDocument();
 });

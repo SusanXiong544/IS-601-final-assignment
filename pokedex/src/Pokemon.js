@@ -7,7 +7,6 @@ const Pokemon = (props) => {
   const initialPokemonState = {
     userHaveAnError: false,
     errorMessage: null,
-
   }
 
   const [pokemonState, setpokemonState] = useState(initialPokemonState)
