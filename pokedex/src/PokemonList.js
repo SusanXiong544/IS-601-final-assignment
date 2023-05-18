@@ -1,35 +1,34 @@
-import React, { useState, useEffect }from "react";
+import React, { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
-const PokedexWrapper = require("pokeapi-js-wrapper")
-const P = new PokedexWrapper.Pokedex()
 
-
+const PokedexWrapper = require("pokeapi-js-wrapper");
 const PokemonList = (props) => {
   const initialPokemonListState = {
     userHaveAnError: false,
     errorMessage: null,
-    pokedexEntries : null
-  }
-  const [pokemonListState, setPokemonListState] = useState(initialPokemonListState)
+    pokedexEntries: null
+  };
+  const P = new PokedexWrapper.Pokedex();
+  const [pokemonListState, setPokemonListState] = useState(initialPokemonListState);
   useEffect(() => {
-   const pokemon_entries = P.getPokedexByName(props.pokedexName).then(function(response) {
+    const pokemon_entries = P.getPokedexByName(props.pokedexName).then(function (response) {
       console.log(response.pokemon_entries)
       return response.pokemon_entries
     })
-    .then((pokemon_entries)=>{
-      setPokemonListState({
-        ...pokemonListState,
-        pokedexEntries : pokemon_entries, 
-      });
-    })
-    .catch((error)=> {
+      .then((pokemon_entries) => {
+        setPokemonListState({
+          ...pokemonListState,
+          pokedexEntries: pokemon_entries,
+        });
+      })
+      .catch((error) => {
         setPokemonListState({
           ...pokemonListState,
           userHaveAnError: true,
           errorMessage: error.errorMessage,
-        }); 
-    });
-  }, [props.pokedexName]); 
+        });
+      });
+  }, [props.pokedexName]);
   const pokemonList =
     pokemonListState?.pokedexEntries
       ? pokemonListState.pokedexEntries.map((pokemon, index) =>

@@ -9,43 +9,43 @@ function App() {
     selectedPokedex: null,
     selectedPokemon: null,
     contentPage: null
-  }
+  };
   const [appState, setAppState] = useState(initialAppState);
 
   const onViewClick = (name) => {
     setAppState({
       ...appState,
-      selectedPokedex : name,
-      contentPage : "entries"
-    })
-  }
+      selectedPokedex: name,
+      contentPage: "entries"
+    });
+  };
 
-   const onViewDetailsClick = (name) => {
+  const onViewDetailsClick = (name) => {
     setAppState({
       ...appState,
       selectedPokemon: name,
-      contentPage :"pokemon"
-    })
-  }
+      contentPage: "pokemon"
+    });
+  };
 
   const backtolist = () => {
     setAppState({
       ...appState,
-      contentPage : "list",
+      contentPage: "list",
       selectedPokedex: null
-    })
-  }
+    });
+  };
 
-   const backtoentries = () => {
+  const backtoentries = () => {
     setAppState({
       ...appState,
-      contentPage : "entries",
+      contentPage: "entries",
       selectedPokemon: null
-    })
+    });
   }
   return (
     <div>
-            <h2>Pokedex Project</h2>
+      <h2>Pokedex Project</h2>
 
       <Button
         onClick={() => {
@@ -59,18 +59,18 @@ function App() {
       >
         Home Button
       </Button>
-      { !appState.selectedPokedex
-        ? <PokedexComponent onViewClick = {onViewClick} />
-      : null}
+      {!appState.selectedPokedex
+        ? <PokedexComponent onViewClick={onViewClick} />
+        : null}
       {appState.selectedPokedex && appState.contentPage == "entries"
-        ? <PokemonList 
-          pokedexName = {appState.selectedPokedex} onViewDetailsClick={onViewDetailsClick}
-          back= {backtolist} />
+        ? <PokemonList
+          pokedexName={appState.selectedPokedex} onViewDetailsClick={onViewDetailsClick}
+          back={backtolist} />
         : null
       }
       {appState.selectedPokemon && appState.contentPage == "pokemon"
-        ? <Pokemon name={appState.selectedPokemon} 
-        back= {backtoentries}/>
+        ? <Pokemon name={appState.selectedPokemon}
+          back={backtoentries} />
         : null
       }
     </div>

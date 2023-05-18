@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Pokedex } from "pokeapi-js-wrapper";
 import PokedexComponent from "./Pokedex";
 
+
 jest.mock('pokeapi-js-wrapper');
 
 beforeEach(() => {
@@ -9,8 +10,8 @@ beforeEach(() => {
         resource: jest.fn().mockResolvedValue({
             results: [{ name: 'national' }]
         })
-    })
-})
+    });
+});
 
 afterEach(() => {
     jest.clearAllMocks();
@@ -18,9 +19,10 @@ afterEach(() => {
 
 test('return list of Pokedex that render on the page', async () => {
     render(
-        <PokedexComponent onViewClick = {jest.fn()}  />,
-      );
-  
-    const nationalPokedex = await screen.getByText('national');
-  expect(nationalPokedex).toBeInTheDocument();
+        <PokedexComponent />,
+    );
+
+    const nationalPokedex = await screen.findByText('national');
+    expect(nationalPokedex).toBeInTheDocument();
 });
+
