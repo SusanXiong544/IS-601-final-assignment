@@ -28,7 +28,7 @@ const PokemonList = (props) => {
           errorMessage: error.errorMessage,
         });
       });
-  }, [props.pokedexName]);
+  }, [ props.pokedexName]);
   const pokemonList =
     pokemonListState?.pokedexEntries
       ? pokemonListState.pokedexEntries.map((pokemon, index) =>

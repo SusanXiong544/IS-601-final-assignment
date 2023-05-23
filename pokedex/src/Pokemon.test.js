@@ -110,6 +110,8 @@ test('return Pokemon details that render on the page', async () => {
         <Pokemon name='mudkip' back={jest.fn()} />,
     );
 
+    const sprites_image = await screen.findByAltText('mudkip')
+    expect(sprites_image).toBeInTheDocument();
     const pokemon = await screen.findByText('mudkip')
     expect(pokemon).toBeInTheDocument();
     const abilities1 = await screen.findByText('damp')
@@ -131,4 +133,5 @@ test('return Pokemon details that render on the page', async () => {
     const stat6 = await screen.findByText('speed: 40')
     expect(stat6).toBeInTheDocument();
 });
+
 

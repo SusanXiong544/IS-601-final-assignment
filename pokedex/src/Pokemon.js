@@ -35,7 +35,7 @@ const Pokemon = (props) => {
         :
         <div>
           Pokemon will go here:
-          <br />{pokemonState.name && <img src={pokemonState?.sprites?.front_default} />}
+          <br />{pokemonState.name && <img src={pokemonState?.sprites?.front_default} alt={pokemonState.name} />}
           <h2>{pokemonState.name}</h2>
           {pokemonState.name && pokemonState.abilities.map((ability) => { return <h3>{ability.ability.name}</h3> })}
           {pokemonState.name && pokemonState.stats.map((stat) => { return <h3>{stat.stat.name}: {stat.base_stat}</h3> })}

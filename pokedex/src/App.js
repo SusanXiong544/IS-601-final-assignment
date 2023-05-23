@@ -62,13 +62,13 @@ function App() {
       {!appState.selectedPokedex
         ? <PokedexComponent onViewClick={onViewClick} />
         : null}
-      {appState.selectedPokedex && appState.contentPage == "entries"
+      {appState.selectedPokedex && appState.contentPage === "entries"
         ? <PokemonList
           pokedexName={appState.selectedPokedex} onViewDetailsClick={onViewDetailsClick}
           back={backtolist} />
         : null
       }
-      {appState.selectedPokemon && appState.contentPage == "pokemon"
+      {appState.selectedPokemon && appState.contentPage === "pokemon"
         ? <Pokemon name={appState.selectedPokemon}
           back={backtoentries} />
         : null

@@ -24,7 +24,7 @@ const PokedexComponent = (props) => {
           errorMessage: error.errorMessage,
         });
       });
-  }, []);
+  }, [props.pokedexName]);
 
   return (
     <div>
